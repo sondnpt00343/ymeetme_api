@@ -1,0 +1,28 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    environment:
+      # env config
+      - RAILS_ENV=production
+      - NODE_ENV=production
+      - RACK_ENV=production
+
+      # app keys
+      - RAILS_MASTER_KEY=15128a402754846d305bd43f691a5a99d2005088a63c3c14c6ad7b32d9acd04834a92f07d3326a91bf9f8758c1297dd8b139aa52e8d8ded71ad0e325989e729b
+      - SECRET_KEY_BASE=036a4c8dacece83ac67401e44081a1cf307ea44b022f9dc4ca8b161684cfbe5c99a478fb1c02678838910f9017e46636d77a189c2ad55f338ef421db286a0fff
+
+      # database
+      - DB_HOST=125.212.239.16
+      - DB_USERNAME=root
+      - DB_PASSWORD=YMeetMe@2K18!~
+      - DB_PORT=23306
+      - DB_NAME=ymeetme_production
+
+    command: bash -c "bundle exec puma -C config/puma.rb"
+    # volumes:
+      # - .:/moreme_web
+    # ports:
+    #   - "13000:3000"
